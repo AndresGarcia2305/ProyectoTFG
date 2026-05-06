@@ -8,6 +8,10 @@
 <div class="container">
     <h2>Reservar clase</h2>
 
+    <p>Bienvenido, <span th:text="${usuario.nombre}"></span></p>
+
+    <a href="/logout">Cerrar sesión</a>
+
     <form action="/reservas/guardar" method="post" th:object="${reserva}">
 
         <label>Actividad:</label>

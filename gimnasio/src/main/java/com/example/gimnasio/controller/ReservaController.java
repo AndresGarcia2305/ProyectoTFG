@@ -30,6 +30,8 @@ public class ReservaController {
         model.addAttribute("reservas", reservaService.listarReservasUsuario(usuario.getIdUsuario()));
         model.addAttribute("reserva", new Reserva());
 
+        model.addAttribute("usuario", usuario);
+
         return "reservas";
     }
 
