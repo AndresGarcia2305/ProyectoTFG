@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="/css/style.css">
     <title>Reservas</title>
 </head>
 <body>
+<div class="container">
+    <h2>Reservar clase</h2>
 
-<h2>Reservar clase</h2>
+    <form action="/reservas/guardar" method="post" th:object="${reserva}">
 
-<form action="/reservas/guardar" method="post" th:object="${reserva}">
+        <label>Actividad:</label>
+        <input type="text" th:field="*{actividad}" required><br>
 
-    <label>Actividad:</label>
-    <input type="text" th:field="*{actividad}" required><br>
+        <label>Fecha:</label>
+        <input type="date" th:field="*{fecha}" required><br>
 
-    <label>Fecha:</label>
-    <input type="date" th:field="*{fecha}" required><br>
+        <label>Hora:</label>
+        <input type="time" th:field="*{hora}" required><br>
 
-    <label>Hora:</label>
-    <input type="time" th:field="*{hora}" required><br>
+        <button type="submit">Reservar</button>
+    </form>
 
-    <button type="submit">Reservar</button>
-</form>
+    <h3>Lista de reservas</h3>
 
-<h3>Lista de reservas</h3>
+    <table border="1">
+        <tr>
+            <th>Actividad</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Acción</th>
+        </tr>
 
-<table border="1">
-    <tr>
-        <th>Actividad</th>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>Acción</th>
-    </tr>
+        <tr th:each="r : ${reservas}">
+            <td th:text="${r.actividad}"></td>
+            <td th:text="${r.fecha}"></td>
+            <td th:text="${r.hora}"></td>
+            <td>
+                <a th:href="@{'/reservas/cancelar/' + ${r.idReserva}}">Cancelar</a>
+            </td>
+        </tr>
+    </table>
+</div>
 
-    <tr th:each="r : ${reservas}">
-        <td th:text="${r.actividad}"></td>
-        <td th:text="${r.fecha}"></td>
-        <td th:text="${r.hora}"></td>
-        <td>
-            <a th:href="@{'/reservas/cancelar/' + ${r.idReserva}}">Cancelar</a>
-        </td>
-    </tr>
-</table>
 
 </body>
 </html>

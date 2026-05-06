@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
+    <link rel="stylesheet" href="/css/style.css">
     <title>Login</title>
 </head>
 <body>
+<div class="container">
+    <h2>Iniciar sesión</h2>
 
-<h2>Iniciar sesión</h2>
+    <form action="/login" method="post">
+        <label>Email:</label>
+        <input type="email" name="email" required><br>
 
-<form action="/login" method="post">
-    <label>Email:</label>
-    <input type="email" name="email" required><br>
+        <label>Password:</label>
+        <input type="password" name="password" required><br>
 
-    <label>Password:</label>
-    <input type="password" name="password" required><br>
+        <button type="submit">Entrar</button>
+    </form>
 
-    <button type="submit">Entrar</button>
-</form>
+    <p th:text="${error}" style="color:red;"></p>
 
-<p th:text="${error}" style="color:red;"></p>
+    <a href="/registro">Registrarse</a>
 
-<a href="/registro">Registrarse</a>
+</div>
 
 </body>
 </html>
