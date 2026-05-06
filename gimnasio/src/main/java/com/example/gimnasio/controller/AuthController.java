@@ -2,6 +2,7 @@ package com.example.gimnasio.controller;
 
 import com.example.gimnasio.model.Usuario;
 import com.example.gimnasio.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,13 +43,14 @@ public class AuthController {
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String password,
-                        Model model) {
+                        Model model,
+                        HttpSession session) {
 
         Optional<Usuario> usuario = usuarioService.login(email, password);
 
         if (usuario.isPresent()) {
-            model.addAttribute("usuario", usuario.get());
-            return "reservas";
+            session.setAttribute("usuarioLogueado", usuario.get());
+            return "redirect:/reservas";
         }
 
         model.addAttribute("error", "Email o contraseña incorrectos");
