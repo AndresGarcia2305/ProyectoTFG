@@ -18,25 +18,44 @@
 <div class="hero">
     <div class="card">
         <h2><i class="fa-solid fa-star"></i> Reseñas del gimnasio</h2>
-        <p>Opiniones de usuarios sobre FitPower.</p>
+        <p>Deja tu opinión sobre FitPower</p>
 
-        <div class="review">
-            <h3>★★★★★</h3>
-            <p>Muy buen gimnasio. Reservar clases desde la web es rápido y cómodo.</p>
-        </div>
 
-        <div class="review">
-            <h3>★★★★☆</h3>
-            <p>La aplicación es sencilla y fácil de usar.</p>
-        </div>
+        <form action="/resenas/guardar" method="post" th:object="${resena}">
 
-        <div class="review">
-            <h3>★★★★★</h3>
-            <p>Me gusta poder ver mis reservas sin tener que llamar al gimnasio.</p>
-        </div>
+            <!-- TEXTO -->
+            <textarea th:field="*{comentario}" placeholder="Escribe tu reseña..."
+                      rows="4" style="width:100%; padding:10px; border-radius:10px;" required></textarea>
 
-        <a class="btn-link" href="/reservas">Volver a reservas</a>
+            <!-- ESTRELLAS -->
+            <label>Valoración:</label>
+            <select th:field="*{puntuacion}">
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+            </select>
+
+            <button type="submit">
+                <i class="fa-solid fa-paper-plane"></i> Publicar reseña
+            </button>
+
+        </form>
     </div>
+</div>
+
+
+<div class="table-container">
+    <h2>Opiniones</h2>
+
+    <div th:each="r : ${resenas}">
+        <p>
+            <span th:each="i : ${#numbers.sequence(1, r.puntuacion)}">★</span>
+            - <span th:text="${r.comentario}"></span>
+        </p>
+    </div>
+
 </div>
 
 </body>

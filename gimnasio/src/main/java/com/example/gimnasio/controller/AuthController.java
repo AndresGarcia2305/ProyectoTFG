@@ -56,6 +56,7 @@ public class AuthController {
         model.addAttribute("error", "Email o contraseña incorrectos");
         return "login";
     }
+
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
@@ -63,8 +64,4 @@ public class AuthController {
     }
 
 
-    @GetMapping("/resenas")
-    public String resenas() {
-        return "resenas";
-    }
 }
