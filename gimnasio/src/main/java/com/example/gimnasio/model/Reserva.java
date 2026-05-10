@@ -12,7 +12,7 @@ public class Reserva {
     @Column(name = "id_reserva")
     private Long idReserva;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String actividad;
 
     @Column(nullable = false)
@@ -21,18 +21,14 @@ public class Reserva {
     @Column(nullable = false)
     private LocalTime hora;
 
+    @Column(nullable = false)
+    private int puntuacion;
+
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
     public Reserva() {
-    }
-
-    public Reserva(String actividad, LocalDate fecha, LocalTime hora, Usuario usuario) {
-        this.actividad = actividad;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.usuario = usuario;
     }
 
     public Long getIdReserva() {
@@ -65,6 +61,14 @@ public class Reserva {
 
     public void setHora(LocalTime hora) {
         this.hora = hora;
+    }
+
+    public int getPuntuacion() {
+        return puntuacion;
+    }
+
+    public void setPuntuacion(int puntuacion) {
+        this.puntuacion = puntuacion;
     }
 
     public Usuario getUsuario() {

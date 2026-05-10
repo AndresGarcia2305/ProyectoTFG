@@ -61,4 +61,10 @@ public class AuthController {
         session.invalidate();
         return "redirect:/login";
     }
+
+
+    @GetMapping("/resenas")
+    public String resenas() {
+        return "resenas";
+    }
 }
