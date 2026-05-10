@@ -5,30 +5,32 @@
     <title>Reservas</title>
 </head>
 <body>
-<div class="container">
-    <h2>Reservar clase</h2>
+<div class="navbar">
+    <h2>FitPower</h2>
+    <div>
+        <span>Bienvenido, <b th:text="${usuario.nombre}"></b></span>
+        <a class="logout" href="/logout">Cerrar sesión</a>
+    </div>
+</div>
 
-    <p>Bienvenido, <span th:text="${usuario.nombre}"></span></p>
+<div class="hero">
+    <div class="card">
+        <h2>Reservar clase</h2>
+        <p>Elige actividad, fecha y hora.</p>
 
-    <a href="/logout">Cerrar sesión</a>
+        <form action="/reservas/guardar" method="post" th:object="${reserva}">
+            <input type="text" th:field="*{actividad}" placeholder="Actividad" required>
+            <input type="date" th:field="*{fecha}" required>
+            <input type="time" th:field="*{hora}" required>
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+</div>
 
-    <form action="/reservas/guardar" method="post" th:object="${reserva}">
+<div class="table-container">
+    <h2>Mis reservas</h2>
 
-        <label>Actividad:</label>
-        <input type="text" th:field="*{actividad}" required><br>
-
-        <label>Fecha:</label>
-        <input type="date" th:field="*{fecha}" required><br>
-
-        <label>Hora:</label>
-        <input type="time" th:field="*{hora}" required><br>
-
-        <button type="submit">Reservar</button>
-    </form>
-
-    <h3>Lista de reservas</h3>
-
-    <table border="1">
+    <table>
         <tr>
             <th>Actividad</th>
             <th>Fecha</th>
@@ -46,7 +48,6 @@
         </tr>
     </table>
 </div>
-
 
 </body>
 </html>
