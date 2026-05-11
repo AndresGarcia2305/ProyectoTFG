@@ -19,3 +19,5 @@ CREATE TABLE reservas (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
         ON DELETE CASCADE
 );
+
+ALTER TABLE reservas ADD COLUMN puntuacion INT NOT NULL DEFAULT 5;
