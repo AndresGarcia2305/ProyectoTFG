@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar reserva</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="hero">
+    <div class="card">
+        <h2>Modificar reserva</h2>
+
+        <form action="/reservas/actualizar" method="post" th:object="${reserva}">
+
+            <input type="hidden" th:field="*{idReserva}">
+
+            <input type="text" th:field="*{actividad}" placeholder="Actividad" required>
+
+            <input type="date" th:field="*{fecha}" required>
+
+            <input type="time" th:field="*{hora}" required>
+
+            <label>Puntuación:</label>
+            <select th:field="*{puntuacion}">
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+            </select>
+
+            <button type="submit">Guardar cambios</button>
+        </form>
+
+        <a href="/reservas">Volver</a>
+    </div>
+</div>
+
+</body>
+</html>

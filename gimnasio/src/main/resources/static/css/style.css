@@ -111,3 +111,15 @@ td, th {
 .logout {
     color: #f87171 !important;
 }
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-title img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}

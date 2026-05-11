@@ -57,4 +57,24 @@ public class ReservaController {
         reservaService.cancelarReserva(id);
         return "redirect:/reservas";
     }
+    @GetMapping("/editar/{id}")
+    public String editarReserva(@PathVariable Long id, Model model) {
+        Reserva reserva = reservaService.buscarPorId(id);
+        model.addAttribute("reserva", reserva);
+        return "editar-reserva";
+    }
+
+    @PostMapping("/actualizar")
+    public String actualizarReserva(@ModelAttribute Reserva reserva, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
+
+        if (usuario == null) {
+            return "redirect:/login";
+        }
+
+        reserva.setUsuario(usuario);
+        reservaService.guardarReserva(reserva);
+
+        return "redirect:/reservas";
+    }
 }

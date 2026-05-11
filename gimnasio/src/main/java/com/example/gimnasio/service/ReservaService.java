@@ -30,4 +30,8 @@ public class ReservaService {
     public void cancelarReserva(Long idReserva) {
         reservaRepository.deleteById(idReserva);
     }
+
+    public Reserva buscarPorId(Long idReserva) {
+        return reservaRepository.findById(idReserva).orElse(null);
+    }
 }

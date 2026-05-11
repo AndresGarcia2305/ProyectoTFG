@@ -8,7 +8,10 @@
 <body>
 
 <div class="navbar">
-    <h2><i class="fa-solid fa-dumbbell"></i> FitPower</h2>
+    <h2 class="logo-title">
+        <img src="/img/logo.png" alt="Logo">
+        FitPower
+    </h2>
     <div>
         <a href="/reservas"><i class="fa-solid fa-calendar-check"></i> Reservas</a>
         <a class="logout" href="/logout">Cerrar sesión</a>
@@ -23,11 +26,11 @@
 
         <form action="/resenas/guardar" method="post" th:object="${resena}">
 
-            <!-- TEXTO -->
+
             <textarea th:field="*{comentario}" placeholder="Escribe tu reseña..."
                       rows="4" style="width:100%; padding:10px; border-radius:10px;" required></textarea>
 
-            <!-- ESTRELLAS -->
+
             <label>Valoración:</label>
             <select th:field="*{puntuacion}">
                 <option value="5">★★★★★</option>

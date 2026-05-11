@@ -6,9 +6,12 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
+
 <div class="navbar">
-    <h2><i class="fa-solid fa-dumbbell"></i> FitPower</h2>
+    <h2 class="logo-title">
+        <img src="/img/logo.png" alt="Logo">
+        FitPower
+    </h2>
     <div>
         <span>Bienvenido, <b th:text="${usuario.nombre}"></b></span>
         <a href="/resenas"><i class="fa-solid fa-star"></i> Reseñas</a>
@@ -16,7 +19,7 @@
     </div>
 </div>
 
-<!-- FORMULARIO -->
+
 <div class="hero">
     <div class="card">
         <h2><i class="fa-solid fa-calendar-check"></i> Reservar clase</h2>
@@ -30,7 +33,7 @@
 
             <input type="time" th:field="*{hora}" required>
 
-            <!-- ⭐ PUNTUACIÓN -->
+
             <label>Puntuación:</label>
             <select th:field="*{puntuacion}">
                 <option value="5">★★★★★</option>
@@ -45,7 +48,7 @@
     </div>
 </div>
 
-<!-- TABLA -->
+
 <div class="table-container">
     <h2><i class="fa-solid fa-list"></i> Mis reservas</h2>
 
@@ -63,12 +66,17 @@
             <td th:text="${r.fecha}"></td>
             <td th:text="${r.hora}"></td>
 
-            <!-- ⭐ MOSTRAR ESTRELLAS -->
+
             <td>
                 <span th:each="i : ${#numbers.sequence(1, r.puntuacion)}">★</span>
             </td>
 
+
             <td>
+                <a th:href="@{'/reservas/editar/' + ${r.idReserva}}">
+                    <i class="fa-solid fa-pen"></i> Modificar
+                </a>
+
                 <a th:href="@{'/reservas/cancelar/' + ${r.idReserva}}">
                     <i class="fa-solid fa-trash"></i> Cancelar
                 </a>
